@@ -1,6 +1,7 @@
 package banco;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class ContaBancaria {
     private int numeroConta;
@@ -14,8 +15,14 @@ public abstract class ContaBancaria {
         this.saldoConta = 0;
         this.nomeTitutlar = nome;
         this.CPFTitular = cpf;
-        this.dataCadastro = atual; //TODO formatar data
+        this.dataCadastro = atual;
         this.dataEncerramento = null;
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        dtf.format(dataCadastro);
+
+        assert false;
+        dtf.format(dataEncerramento);
     }
 
     public abstract boolean sacar(double valor);
