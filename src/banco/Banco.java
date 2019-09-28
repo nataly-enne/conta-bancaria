@@ -2,13 +2,23 @@ package banco;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Banco implements Imprimivel {
     private ArrayList<ContaBancaria> contas;
 
+
     public Banco() {
         contas = new ArrayList<ContaBancaria>();
+    }
+
+    public ArrayList<ContaBancaria> getContas() {
+        return contas;
+    }
+
+    public void setContas(ArrayList<ContaBancaria> contas) {
+        this.contas = contas;
     }
 
     public boolean inserir(ContaBancaria conta) {
@@ -35,7 +45,7 @@ public class Banco implements Imprimivel {
 
     public ContaBancaria procurarConta(int numeroConta) {
         for (ContaBancaria c : contas) {
-            if (c.getNumeroConta() == numeroConta) {
+            if (c.getConta() == numeroConta) {
                 return c;
             }
         }
@@ -55,47 +65,39 @@ public class Banco implements Imprimivel {
         }
     }
 
-    public ContaBancaria criarConta(String nomeTitular, String CPFTitular){
-        int tipoConta = -1;
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Qual tipo da conta? 1 - Conta Poupança 2 - Conta Corrente");
-
-        tipoConta = scanner.nextInt();
-
+    public void criarContaBancaria(int tipoConta) {
+        Scanner in = new Scanner(System.in);
+        String nome, cpf;
+        System.out.println("Digite o nome do titular da conta: ");
+        nome = in.nextLine();
+        System.out.println("Digite o cpf do titular: ");
+        cpf = in.nextLine();
         if(tipoConta == 1){
-            int numeroConta;
-            double limite;
-
-            System.out.println("Digite o número da conta:");
-            numeroConta = scanner.nextInt();
-
-            System.out.println("Digite o limite da conta:");
-            limite = scanner.nextDouble();
-
-            ContaBancaria ca = new ContaPoupanca(numeroConta, limite, nomeTitular, CPFTitular, LocalDateTime.now());
-            return ca;
+            ContaCorrente cc = new ContaCorrente();
+            if( cc.inicializarConta(nome, cpf, this)) {
+                this.inserir(cc);
+            }
+        }else if(tipoConta == 2){
+            ContaPoupanca cp = new ContaPoupanca();
+            if(cp.inicializarConta(nome, cpf, this)){
+                this.inserir(cp);
+            }
+        }else{
+            System.out.println("Opção inexistente!");
         }
-        else if(tipoConta == 2){
-            int numeroConta;
-            double taxaOperacao;
-
-            System.out.println("Digite o número da conta:");
-            numeroConta = scanner.nextInt();
-
-            System.out.println("Digite o taxaOperacao da conta:");
-            taxaOperacao = scanner.nextDouble();
-
-            ContaBancaria ca = new ContaCorrente(numeroConta, taxaOperacao, nomeTitular, CPFTitular, LocalDateTime.now());
-            return ca;
-        }
-        else{
-            return null;
-        }
-
     }
-    public void encerrarConta(String CPFTitular){
-        return ;
-    }
+
+    //TODO implementar métodos
+//    public List<ContaBancaria> procurarContaPorTitular(String nome) {
+//
+//    }
+//
+//    public List<ContaBancaria> procurarContaPorCpf(String cpf) {
+//        for (ContaBancaria c: this) {
+//            if(c.getCpfTitular().equals(cpf)){
+//                c.toString();
+//            }
+//        }
+//    }
 }
