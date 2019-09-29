@@ -2,6 +2,7 @@ package banco;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -89,15 +90,43 @@ public class Banco implements Imprimivel {
     }
 
     //TODO implementar métodos
-//    public List<ContaBancaria> procurarContaPorTitular(String nome) {
-//
-//    }
-//
-//    public List<ContaBancaria> procurarContaPorCpf(String cpf) {
-//        for (ContaBancaria c: this) {
-//            if(c.getCpfTitular().equals(cpf)){
-//                c.toString();
-//            }
-//        }
-//    }
+
+    public List<ContaBancaria> procurarContaPorTitular(String nome) {
+
+        Iterator<ContaBancaria> it  =  contas.iterator();
+
+        // vai armazenar as contas com nomes iguais aqui
+        ArrayList<ContaBancaria> armazenar = new ArrayList<ContaBancaria>();
+
+        while (it.hasNext()){
+                // dando split no nome do titular para pegar apenas o primeiro nome
+                String[] splited_nome = it.next().getNomeTitular().split(" ");
+
+                if(splited_nome[0].equals(nome)){
+                        armazenar.add(it.next());
+                }
+        }
+
+        return armazenar;
+    }
+
+
+    public List<ContaBancaria> procurarContaPorCpf(String cpf) {
+
+        Iterator<ContaBancaria> it  = contas.iterator();
+
+        // vai armazenar as contas com o mesmo cpf aqui
+        ArrayList<ContaBancaria> armazenar = new ArrayList<ContaBancaria>();
+
+        while (it.hasNext()){
+            if(it.next().getCpfTitular().equals(cpf)){
+                armazenar.add(it.next());
+            }
+        }
+
+        return armazenar;
+    }
+
+
+
 }
