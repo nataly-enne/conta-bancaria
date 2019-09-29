@@ -39,7 +39,7 @@ public class Banco implements Imprimivel {
             return true;
         }
 
-        System.out.println("Deu merda!");
+        System.out.println("Remoção não realizada!");
         return false;
     }
 
