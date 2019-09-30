@@ -58,7 +58,15 @@ public class ContaPoupanca extends ContaBancaria implements Imprimivel  {
 
     @Override
     public void mostrarDados() {
-        System.out.println("Numero da conta: "+getConta()+"\nSaldo: "+getSaldo()+"\nLimite: "+getLimite());
+        System.out.println("Numero da conta: "+getConta()+"\nNome do titular: " + getNomeTitular() + "\nCpf do titular: " +
+                getCpfTitular() + "\nSaldo: "+getSaldo()+"\nLimite: "+getLimite());
+        System.out.println("Data de abertura: " + getDataAbertura());
+        if(isAtiva()){
+            System.out.println("Conta ativa");
+        }else{
+            System.out.println("Data de encerramento: " +  getDataEncerramento());
+            System.out.println("Conta desativada");
+        }
     }
 
 

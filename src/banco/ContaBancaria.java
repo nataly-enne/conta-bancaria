@@ -3,7 +3,7 @@ package banco;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class ContaBancaria {
+public abstract class ContaBancaria{
     private int conta;
     private double saldo;
     private String nomeTitular, cpfTitular;
@@ -79,7 +79,7 @@ public abstract class ContaBancaria {
         this.ativa = ativa;
     }
 
-    //Métodos Públicos
+    //Métodos Públicos Abstratos
     public abstract boolean sacar(double value);
     public abstract boolean depositar (double value);
     public abstract boolean transferir(double value, ContaBancaria conta);
