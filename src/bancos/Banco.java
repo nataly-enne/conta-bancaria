@@ -1,21 +1,15 @@
 package bancos;
 
-import contas.ContaBancaria;
-import contas.ContaCorrente;
-import contas.ContaPoupanca;
+import contas.*;
 import interfaces.Imprimivel;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Banco implements Imprimivel {
     private ArrayList<ContaBancaria> contas;
 
 
     public Banco() {
-        contas = new ArrayList<ContaBancaria>();
+        contas = new ArrayList<>();
     }
 
     public ArrayList<ContaBancaria> getContas() {
@@ -54,7 +48,6 @@ public class Banco implements Imprimivel {
                 return c;
             }
         }
-
         return null;
     }
 
@@ -64,7 +57,8 @@ public class Banco implements Imprimivel {
         for (ContaBancaria c : contas) {
             if (c instanceof ContaPoupanca) {
                 ((ContaPoupanca) c).mostrarDados();
-            } else {
+            }
+            else {
                 ((ContaCorrente) c).mostrarDados();
             }
         }
@@ -73,26 +67,30 @@ public class Banco implements Imprimivel {
 
     public void criarContaBancaria(int tipoConta) {
         Scanner in = new Scanner(System.in);
+
         String nome, cpf;
         System.out.println("Digite o nome do titular da conta: ");
         nome = in.nextLine();
+
         System.out.println("Digite o cpf do titular: ");
         cpf = in.nextLine();
+
         if(tipoConta == 1){
             ContaCorrente cc = new ContaCorrente();
             if( cc.inicializarConta(nome, cpf, this)) {
                 this.inserir(cc);
             }
-        }else if(tipoConta == 2){
+        }
+        else if(tipoConta == 2){
             ContaPoupanca cp = new ContaPoupanca();
             if(cp.inicializarConta(nome, cpf, this)){
                 this.inserir(cp);
             }
-        }else{
+        }
+        else{
             System.out.println("Opção inexistente!");
         }
     }
-
 
     public List<ContaBancaria> procurarContaPorTitular(String nome) {
 
@@ -113,7 +111,6 @@ public class Banco implements Imprimivel {
         return armazenar;
     }
 
-
     public List<ContaBancaria> procurarContaPorCpf(String cpf) {
 
         Iterator<ContaBancaria> it  = contas.iterator();
@@ -126,10 +123,6 @@ public class Banco implements Imprimivel {
                 armazenar.add(it.next());
             }
         }
-
         return armazenar;
     }
-
-
-
 }

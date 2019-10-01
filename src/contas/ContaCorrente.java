@@ -10,11 +10,10 @@ import java.util.Scanner;
 public class ContaCorrente extends ContaBancaria implements Imprimivel {
     private double taxaDeOperação = 5d;
 
-    //Métodos especiais
+    // Métodos especiais
     public ContaCorrente(){
         super();
     }
-
 
     public double getTaxaDeOperação() {
         return taxaDeOperação;
@@ -24,7 +23,7 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
         this.taxaDeOperação = taxaDeOperação;
     }
 
-    //Métodos públicos
+    // Métodos públicos
     public boolean sacar(double valor) {
         if (valor + taxaDeOperação > getSaldo()) {
             System.out.println("Saldo insuficiente!");
@@ -66,11 +65,22 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
     public void mostrarDados() {
         System.out.println("Numero da conta: " + getConta()+"\nNome do titular: " + getNomeTitular() + "\nCpf do titular: " +
                 getCpfTitular() + "\nSaldo: "+getSaldo()+"\nTaxa de Operação: "+getTaxaDeOperação());
-        System.out.println("Data de abertura: " + getDataAbertura());
+
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formatedDateTime = dtf.format(getDataAbertura());
+
+
+        System.out.println("Data de abertura: " + formatedDateTime);
         if(isAtiva()){
             System.out.println("Conta ativa");
-        }else{
-            System.out.println("Data de encerramento: " +  getDataEncerramento());
+        }
+        else{
+
+            DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            String formatedDateTime2 = dtf.format(getDataEncerramento());
+
+            System.out.println("Data de encerramento: " +  formatedDateTime2);
             System.out.println("Conta desativada");
         }
     }
@@ -82,17 +92,15 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
         double taxaDeOperação = -1.0;
         boolean possivelCriarConta = true;
         int op = 2;
+
         LocalDateTime data = LocalDateTime.now();
-        String formatedDateTime;
-        DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        formatedDateTime = data.format(dff);
-        data.parse(formatedDateTime, dff);//TODO formatação não funciona
 
         System.out.println("Digite o número da conta: ");
         numeroDaConta = scanner.nextInt();
         if(banco.getContas().isEmpty()){
             possivelCriarConta = true;
-        }else{
+        }
+        else{
             for (ContaBancaria c: banco.getContas()) {
                 if(numeroDaConta == c.getConta()){
                     System.out.println("Já existe uma conta com esse número!");
@@ -119,10 +127,7 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
     public boolean encerrarConta(String cpf) {
         if(this.isAtiva()){
             LocalDateTime data = LocalDateTime.now();
-            String formatedDateTime;
-            DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-            formatedDateTime = data.format(dff);
-            data.parse(formatedDateTime, dff);//TODO formatação não funciona
+
             this.setAtiva(false);
             this.setDataEncerramento(data);
             return true;

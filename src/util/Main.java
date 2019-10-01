@@ -2,15 +2,12 @@ package util;
 
 import bancos.Banco;
 import compares.*;
-import contas.ContaCorrente;
 import interfaces.Relatorio;
 import java.util.Collections;
 
-
 public class Main {
     public static void main(String[] args) {
-       // Menu menu = new Menu();
-       // menu.iniciar();
+
         //Variáveis auxiliares
         Relatorio r = new Relatorio();
         CompareByName compareByName = new CompareByName();
@@ -34,7 +31,8 @@ public class Main {
         for(int i = 0; i < 6; i++) {
             if(i%2 == 0){
                 banco.criarContaBancaria(2);
-            }else{
+            }
+            else{
                 banco.criarContaBancaria(1);
             }
         }

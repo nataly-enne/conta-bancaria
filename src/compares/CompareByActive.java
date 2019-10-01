@@ -9,9 +9,11 @@ public class CompareByActive implements Comparator<ContaBancaria> {
     public int compare(ContaBancaria c1, ContaBancaria c2) {
         if(c1.isAtiva() && c2.isAtiva()){
             return 0;
-        }else if(c1.isAtiva() && !c2.isAtiva()){
+        }
+        else if(c1.isAtiva() && !c2.isAtiva()){
             return -1;
-        }else{
+        }
+        else{
             return 1;
         }
     }

@@ -12,7 +12,8 @@ public class CompareByNameThenStatus implements Comparator<ContaBancaria> {
 
         if(name.compare(c1, c2) == 0){
             return active.compare(c1, c2);
-        }else{
+        }
+        else{
             return name.compare(c1, c2);
         }
     }
