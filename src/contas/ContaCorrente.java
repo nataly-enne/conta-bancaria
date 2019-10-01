@@ -127,7 +127,6 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
     public boolean encerrarConta(String cpf) {
         if(this.isAtiva()){
             LocalDateTime data = LocalDateTime.now();
-
             this.setAtiva(false);
             this.setDataEncerramento(data);
             return true;

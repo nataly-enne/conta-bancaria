@@ -94,33 +94,27 @@ public class Banco implements Imprimivel {
 
     public List<ContaBancaria> procurarContaPorTitular(String nome) {
 
-        Iterator<ContaBancaria> it  =  contas.iterator();
-
         // vai armazenar as contas com nomes iguais aqui
         ArrayList<ContaBancaria> armazenar = new ArrayList<ContaBancaria>();
+        ArrayList<ContaBancaria> contas = this.getContas() ;
 
-        while (it.hasNext()){
-                // dando split no nome do titular para pegar apenas o primeiro nome
-                String[] splited_nome = it.next().getNomeTitular().split(" ");
-
-                if(splited_nome[0].equals(nome)){
-                        armazenar.add(it.next());
-                }
+        for (ContaBancaria c: contas) {
+            if(c.getNomeTitular().contains(nome)){
+                armazenar.add(c);
+            }
         }
-
         return armazenar;
     }
 
     public List<ContaBancaria> procurarContaPorCpf(String cpf) {
 
-        Iterator<ContaBancaria> it  = contas.iterator();
-
+        ArrayList<ContaBancaria> contas = this.getContas();
         // vai armazenar as contas com o mesmo cpf aqui
-        ArrayList<ContaBancaria> armazenar = new ArrayList<ContaBancaria>();
+        ArrayList<ContaBancaria> armazenar = new ArrayList<>();
 
-        while (it.hasNext()){
-            if(it.next().getCpfTitular().equals(cpf)){
-                armazenar.add(it.next());
+        for (ContaBancaria c: contas) {
+            if(c.getCpfTitular().equals(cpf)){
+                armazenar.add(c);
             }
         }
         return armazenar;
