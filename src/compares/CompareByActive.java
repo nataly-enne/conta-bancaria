@@ -1,4 +1,6 @@
-package banco;
+package compares;
+
+import contas.ContaBancaria;
 
 import java.util.Comparator;
 

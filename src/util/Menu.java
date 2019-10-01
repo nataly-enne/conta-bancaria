@@ -1,6 +1,11 @@
-package banco;
+package util;
 
-import java.sql.SQLOutput;
+import bancos.Banco;
+import interfaces.Relatorio;
+import contas.ContaBancaria;
+import contas.ContaCorrente;
+import contas.ContaPoupanca;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,19 +20,19 @@ public class Menu {
 
 
         Scanner in = new Scanner(System.in);
-        System.out.println("====================Bem-vindo(a) ao Banco B=========================");
+        System.out.println("==================== Bem-vindo(a) ao Banco B =========================");
         do {
             System.out.println(">>>>>>>>>>Por favor, selecione a operação que deseja realizar através das opções abaixo: ");
             System.out.println("(1) - Criar conta\n(2)- Selecionar conta\n(3)-Remover conta\n(4)-Gerar relatório\n(5)-Finalizar");
             op = in.nextInt();
             switch (op){
                 case 1:
-                    System.out.println("===============Criação de conta=================");
+                    System.out.println("=============== Criação de conta =================");
                     System.out.println("\n Digite o tipo de conta a ser criada:\n(1) - Conta corrente\n(2) - Conta poupança");
                     tipoConta = in.nextInt();
                     b.criarContaBancaria(tipoConta);
                 case 2:
-                    System.out.println("================Selecionar conta=================");
+                    System.out.println("================ Selecionar cont =================");
                     System.out.println("Selecione a opção para pesquisar conta:\n(1) - Pesquisar por nome do titular\n(2) - Pesquisar por cpf do titular\n(3) - Pesquisar por número da conta");
                     tipoPesquisa = in.nextInt();
                     switch (tipoPesquisa){
@@ -89,7 +94,7 @@ public class Menu {
                             }
                             break;
                         case 4:
-                            System.out.println(">>>>>>>Status da conta<<<<<<<<<");
+                            System.out.println(">>>>>>> Status da conta <<<<<<<<<");
                             Relatorio r = new Relatorio();
                             if(cb instanceof ContaPoupanca){
                                 r.gerarRelatorio((ContaPoupanca) cb);
@@ -98,13 +103,13 @@ public class Menu {
                             }
                             break;
                         case 5:
-                            System.out.println(">>>>>>>>Voltando ao menu anterior<<<<<<<<<<<<");
+                            System.out.println(">>>>>>>> Voltando ao menu anterior <<<<<<<<<<<<");
                             break;
                         default:
                             System.out.println("Opção inexistente");
                     }
                 case 3:
-                    System.out.println("==========Remoção de conta============");
+                    System.out.println("========== Remoção de conta ============");
                     System.out.println("Digite o número da conta que deseja deletar:");
                     int numeroConta;
                     ContaBancaria c;
@@ -118,12 +123,12 @@ public class Menu {
                     }
                     break;
                 case 4:
-                    System.out.println("============Relatório de contas===========");
+                    System.out.println("============ Relatório de contas ===========");
                     Relatorio r = new Relatorio();
                     r.gerarRelatorio(b);
                     break;
                 case 5:
-                    System.out.println("=============Finalizando menu============");
+                    System.out.println("============= Finalizando menu ============");
                     break;
                 default:
                     System.out.println("Opção inexistente!");

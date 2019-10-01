@@ -1,10 +1,13 @@
-package banco;
+package contas;
+
+import bancos.Banco;
+import interfaces.Imprimivel;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class ContaCorrente extends ContaBancaria implements Imprimivel{
+public class ContaCorrente extends ContaBancaria implements Imprimivel {
     private double taxaDeOperação = 5d;
 
     //Métodos especiais
