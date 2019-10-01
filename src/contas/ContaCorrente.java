@@ -64,7 +64,7 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
 
     @Override
     public void mostrarDados() {
-        System.out.println("Numero da conta: "+getConta()+"\nNome do titular: " + getNomeTitular() + "\nCpf do titular: " +
+        System.out.println("Numero da conta: " + getConta()+"\nNome do titular: " + getNomeTitular() + "\nCpf do titular: " +
                 getCpfTitular() + "\nSaldo: "+getSaldo()+"\nTaxa de Operação: "+getTaxaDeOperação());
         System.out.println("Data de abertura: " + getDataAbertura());
         if(isAtiva()){
@@ -86,7 +86,7 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
         String formatedDateTime;
         DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         formatedDateTime = data.format(dff);
-        data.parse(formatedDateTime, dff);//TODO verificar se a formatação está funcionando
+        data.parse(formatedDateTime, dff);//TODO formatação não funciona
 
         System.out.println("Digite o número da conta: ");
         numeroDaConta = scanner.nextInt();
@@ -122,7 +122,7 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel {
             String formatedDateTime;
             DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             formatedDateTime = data.format(dff);
-            data.parse(formatedDateTime, dff);//TODO verificar se a formataçõa está funcionando
+            data.parse(formatedDateTime, dff);//TODO formatação não funciona
             this.setAtiva(false);
             this.setDataEncerramento(data);
             return true;

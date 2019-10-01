@@ -83,7 +83,7 @@ public class ContaPoupanca extends ContaBancaria implements Imprimivel {
         String formatedDateTime;
         DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         formatedDateTime = data.format(dff);
-        data.parse(formatedDateTime, dff);//TODO verificar se a formatação está funcionando
+        data.parse(formatedDateTime, dff);//TODO formatação não funciona
 
         System.out.println("Digite o número da conta: ");
         numeroDaConta = scanner.nextInt();
@@ -102,7 +102,7 @@ public class ContaPoupanca extends ContaBancaria implements Imprimivel {
             this.setNomeTitular(nomeTitular);
             this.setCpfTitular(cpfTitular);
             this.setDataAbertura(data);
-
+            this.setConta(numeroDaConta);
             System.out.println("Digite o limite:  ");
             limite = scanner.nextDouble();
             this.setLimite(limite);
@@ -119,7 +119,7 @@ public class ContaPoupanca extends ContaBancaria implements Imprimivel {
             String formatedDateTime;
             DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             formatedDateTime = data.format(dff);
-            data.parse(formatedDateTime, dff);//TODO verificar se a formatação está funcionando
+            data.parse(formatedDateTime, dff);//TODO Formatação não funciona
             this.setAtiva(false);
             this.setDataEncerramento(data);
             return true;
