@@ -16,7 +16,7 @@ O banco é formado pela classe ContaBancaria, que contém os seguintes atributos
 
 Na classe ContaBancaria há métodos abstratos ``criarConta()`` e ``encerrarConta()``.  Onde terá a passagem de parâmetros nome e cpf.
 
-Há outros métodos abstratos como ``mostrarDados()`` que recebe o nome do titular, CPF, a data de cadastro e data de encerramento (só deverá ser mostrada a data de encerramento se o atributo ativa tiver o valor falso). Como, também, a variável "ativa" que retorna "Conta ativa" se o atributo tive o valor verdadeiro e “Conta desativada” caso contrário dataEncerramento
+Há outros métodos abstratos como ``mostrarDados()`` que recebe o nome do titular, CPF, a data de cadastro e data de encerramento (só será mostrada se o atributo _ativa_ tiver o valor falso). Como, também, a variável "ativa" que retorna "Conta ativa" se o atributo tive o valor verdadeiro e “Conta desativada” caso contrário dataEncerramento
 
 Na classe Banco (que possui um ArrayList de ContaBancaria) há os métodos ``procurarContaPorTitular()`` e ``procurarContaPorCPF()``, cujo nomes são auto explicativos.
 
